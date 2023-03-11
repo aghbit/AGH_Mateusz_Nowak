@@ -1,0 +1,14 @@
+<header>
+    <nav class="header-nav">
+        <a href="/" class="header-title" >Personal Trips</a>
+        <ul>
+            <% if (locals.user) { %>
+                <li><a href="/">Home</a></li>
+                <li><a href="/trips/new">New Trip</a></li>
+                <li><a href="/trips">Your Trips</a></li>
+
+                <li><a href="/auth/logout">SignOut</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header>

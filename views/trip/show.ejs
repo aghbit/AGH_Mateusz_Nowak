@@ -1,0 +1,17 @@
+<h2 class="page-header"><%= trip.name %></h2>
+<div class="trip-details-container">   
+    <div class="trip-details">
+        <div class="start-date">
+            <div>Start Date</div>
+            <div><%= trip.startDate == null ? '' : trip.startDate.toISOString().split('T')[0] %> </div>
+        </div>
+        <div class="end-date">
+            <div>End Date</div>
+            <div><%= trip.endDate == null ? '' : trip.endDate.toISOString().split('T')[0] %> </div>
+        </div>
+
+        <div class="trip-details-label">Description: </div>
+        <div><%= trip.description %></div>
+    
+    </div>
+</div>

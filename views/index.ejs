@@ -1,0 +1,7 @@
+<% if (locals.user) { %>
+<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYfwF3QCzc8nKFUjARNUZ4CLeCf-9G6R4&callback=initMap"></script>
+<div id="map" class="map"></div>
+<% } else { %>
+    <h2 class="page-header">Please log in to see your trips</div>
+    <%- include("./login/index.ejs") %>
+<% } %>

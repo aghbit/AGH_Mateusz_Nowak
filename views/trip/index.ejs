@@ -1,0 +1,38 @@
+<h2 class="page-header">Trip List</h2>
+<div class="search-container">
+    <form action="/trips" method="get">
+        <div>
+            <div class="form-item">
+                <input type="text" name="keyword">
+            </div>
+            <button class="btn btn-primary">search</button>
+
+        </div>
+    </form>
+</div>
+
+<div class="trip-grid">
+    <% trips.forEach(trip=>{ %>
+        <div class="trip-grid-item" id="<%= trip.id %>">
+            <img src="<%= trip.thumbnail %>" class="trip-grid-image">
+            <div class="trip-name"> <%= trip.name %> </div>
+            <div class="dates">
+                <div class="start-date date">
+                    <div>Start Date</div>
+                    <div><%= trip.startDate == null ? '' : trip.startDate.toISOString().split('T')[0] %> </div>
+                </div>
+                <div class="end-date date">
+                    <div>End Date</div>
+                    <div><%= trip.endDate == null ? '' : trip.endDate.toISOString().split('T')[0] %> </div>
+                </div>
+            </div>
+
+            <a class="btn btn-primary" href="/trips/<%= trip.id %>">More</a>
+            <div class="btn-row span">
+
+                <a href="/trips/edit/<%= trip.id %>" class="btn btn-primary">Edit</a>
+                <%- include("../partials/deleteForm.ejs", {url: `/trips/${trip.id}`}) %>
+            </div>
+        </div>
+    <% }) %>
+</div>

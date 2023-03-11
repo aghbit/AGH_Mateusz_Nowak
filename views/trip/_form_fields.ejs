@@ -1,0 +1,82 @@
+<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYfwF3QCzc8nKFUjARNUZ4CLeCf-9G6R4&callback=initPickLocation"></script>
+<div class="form-row">
+  <div class="form-item">
+    <label>Trip name</label>
+    <input
+      type="text"
+      name="name"
+      value="<%= trip.name %>"
+    />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-item">
+    <label>Location</label>
+    <input type="text" name="lat" value="<%= trip.lat %>" hidden="true" id="location" />
+    <input type="text" name="lng" value="<%= trip.lng %>" hidden="true" id="location"/>
+    
+    <div class="instructions">
+      <strong>Instructions</strong>: Enter an address in the textbox to geocode or click on the map to reverse geocode.
+    </div>
+    
+    <div id="map-pick-location" class="map"></div>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-item">
+    <label>Trip Start Date</label>
+    <input type="date" name="startDate" value="<%= trip.startDate == null ? '' : trip.startDate.toISOString().split('T')[0] %>" />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-item">
+    <label>Trip End Date</label>
+    <input type="date" name="endDate" value="<%= trip.endDate == null ? '' : trip.endDate.toISOString().split('T')[0] %>" />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-item">
+    <label>Description</label>
+    <textarea name="description"><%= trip.description %></textarea>
+  </div>
+</div>
+
+<div id="photo-input-containter">
+  <% for (let imageId in trip?.images){ %>
+    <div class="form-row">
+      <div class="form-item">
+        <label>
+          <div>Photo Url</div>
+          <input type="radio" id="thumbnail" name="thumbnail" value="<% trip.images[imageId] %>">
+        </label>
+        
+        <input type="text" id="photo" name="photo<% imageId %>" value="<%= trip.images[imageId]  %>" />
+        <button class="btn btn-danger" type="button" onclick="remove(this)">Remove</button>
+      </div>
+    </div>
+  <% } %>
+</div>
+<button type="button" id="btn-photo" class="btn btn-primary">
+  Add Photo Url
+</button>
+
+<template id="photo-input-template">
+  <div class="form-row">
+    <div class="form-item">
+      <label>
+        <div>Photo Url</div>
+        <input type="radio" id="thumbnail" name="thumbnail" value="">
+      </label>
+      <input type="text" id="photo"  name="photo" value="" />
+
+      <button class="btn btn-danger" type="button" onclick="remove(this)">Remove</button>
+    </div>
+  </div>
+</template>
+
+<script src="/js/newTrip.js" defer></script>
+
